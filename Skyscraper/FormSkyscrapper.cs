@@ -11,9 +11,9 @@ using System.Windows.Forms;
 
 namespace Skyscraper
 {
-    public partial class Form1 : Form, IUI
+    public partial class FormSkyscrapper : Form, IUI
     {
-        public Form1()
+        public FormSkyscrapper()
         {
             InitializeComponent();
         }
@@ -24,8 +24,9 @@ namespace Skyscraper
             this.KeyPreview = true;
             this.KeyDown -= Form1_KeyDown1;
             this.KeyDown += Form1_KeyDown1;
-            this.Initial(7);
-            this.ShowFin();
+            NewGame(4);
+           // this.Initial(4);
+           // this.ShowFin();
 
         }
 
@@ -160,6 +161,7 @@ namespace Skyscraper
         {
             if (this.Controls.Contains(picboard))
             {
+                picboard.CellClick -= Picboard_CellClick;
                 this.Controls.Remove(picboard);
             }
 
@@ -184,13 +186,13 @@ namespace Skyscraper
                     {1,4,3,2 }
                 };
             Board.IBoardGenerator BoardGen = new Board.BasicGenerator(Utility.PreGenerateDigitsPath);
-           // BoardGen = new Board.ManualGenerator(arr2d);
+            BoardGen = new Board.ManualGenerator(arr2d);
 
             game = new Game(this, BoardSize, BoardSize, BoardGen);
             picboard = new PictureBoxBoard(game.board, false);
             picboard.CellClick -= Picboard_CellClick;
             picboard.CellClick += Picboard_CellClick;
-          
+            picboard.Top = this.menuStrip1.Height + 10;
             picboard.Left = 0;
             this.Controls.Add(picboard);
             this.Height = picboard.Height + picboard.Top + 40;
@@ -265,6 +267,55 @@ namespace Skyscraper
             this.Controls.Add(picboardFin);
             this.Width = picboardFin.Width + picboardFin.Left + 17;
             IsGiveup = true;
+        }
+
+        private void toolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            NewGame(4);
+        }
+
+        private void x5ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            NewGame(5);
+        }
+
+        private void x6ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            NewGame(6);
+        }
+
+        private void x7ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            NewGame(7);
+        }
+
+        private void toolStripMenuItem5_Click(object sender, EventArgs e)
+        {
+            if (IsGiveup)
+            {
+                return;
+            }
+            if (game.board.IsFinshed)
+            {
+                return;
+            }
+            this.ShowFin();
+        }
+
+        private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Do you want to exit?", "", MessageBoxButtons.OKCancel) != DialogResult.OK)
+            {
+                return;
+            }
+            Application.Exit();
+        }
+
+        private void aboutToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            FormAbout f = new FormAbout();
+            f.ShowDialog();
+
         }
     }
 }

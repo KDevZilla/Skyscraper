@@ -319,7 +319,9 @@ namespace Skyscraper
                 }
             }
             );
-            
+
+
+           
             NewBoard.IsFinshed = this.IsFinshed;
             return NewBoard;
         }
@@ -477,8 +479,8 @@ namespace Skyscraper
             {
                 int i;
                 int j;
-
-               board.CellvalueMatrix   = new int[board.RowSize , board.RowSize ];
+                var TargetCellValue = new int[board.RowSize, board.RowSize];
+                board.CellvalueMatrix   = new int[board.RowSize , board.RowSize ];
                 int[] arrRowTemp = new int[board.RowSize];
 
                 Dictionary<int, List<List<int>>> DicList = GetDicList(board.RowSize , FilePath);
@@ -499,7 +501,7 @@ namespace Skyscraper
                             int k;
                             for (k = 0; k <= board.RowSize - 1; k++)
                             {
-                                if (board[k, j] == lst[j])
+                                if (TargetCellValue[k, j] == lst[j])
                                 {
                                     IsValid = false;
 
@@ -513,7 +515,7 @@ namespace Skyscraper
                             {
                                 //array[i - 1, j] = int.Parse(iResult.ToString().Substring(j, 1));
                                 // board[i - 1, j] = lst[j];
-                                board.CorrectCellvalueMatrix[i - 1, j] = lst[j];
+                                TargetCellValue[i - 1, j] = lst[j];
 
                             }
                         }
@@ -524,6 +526,13 @@ namespace Skyscraper
 
                 //Swap Row;
                 //int i;
+                for (i = 0; i < board.RowSize; i++)
+                {
+                    for (j = 0; j < board.RowSize; j++)
+                    {
+                        board.CorrectCellvalueMatrix[i, j] = TargetCellValue[i, j];
+                    }
+                }
                 for (i = 0; i <= 30; i++)
                 {
                     int iFirstRow = Utility.Random(0, board.RowSize );

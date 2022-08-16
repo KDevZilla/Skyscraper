@@ -47,11 +47,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Board.cs" />
-    <Compile Include="Form1.cs">
+    <Compile Include="FormAbout.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="FormAbout.Designer.cs">
+      <DependentUpon>FormAbout.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormSkyscrapper.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormSkyscrapper.Designer.cs">
+      <DependentUpon>FormSkyscrapper.cs</DependentUpon>
     </Compile>
     <Compile Include="Form2.cs">
       <SubType>Form</SubType>
@@ -70,8 +76,11 @@
     <Compile Include="UI\IUI.cs" />
     <Compile Include="UI\UIUtility.cs" />
     <Compile Include="Utility.cs" />
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="FormAbout.resx">
+      <DependentUpon>FormAbout.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormSkyscrapper.resx">
+      <DependentUpon>FormSkyscrapper.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form2.resx">
       <DependentUpon>Form2.cs</DependentUpon>
