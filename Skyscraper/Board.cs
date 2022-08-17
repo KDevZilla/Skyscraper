@@ -24,7 +24,7 @@ namespace Skyscraper
         public Dictionary<Direction, int[]> DicUserAnswerlist { get; private set; }
         public Dictionary<Direction, int[]> DicCorrectAnswerlist { get; private set; }
         public Dictionary<Direction, AnswerResult[]> DicAnswerResultlist { get; private set; }
-
+    
        // public AnswerResult[] ColAnswerResultlist { get; private set; }
         public bool IsFinshed { get; private set; }
         public IBoardGenerator BoardGenerator { get; private set; }
@@ -140,7 +140,8 @@ namespace Skyscraper
         {
             NotChooseYet,
             Correct,
-            Incorrect
+            SumIncorrect,
+            UniqueIncorrect
         }
         //public event EventHandler CellValueUpdated;
         public event EventHandler<Position> CellValueUpdated;
@@ -215,10 +216,64 @@ namespace Skyscraper
         public void CalculateIfEachRowCorrect()
         {
             Boolean IsThisboardSolved = true;
+            int i,j;
+            for (i = 0; i < this.RowSize; i++)
+            {
+                this.DicAnswerResultlist[Direction.Top][i] = AnswerResult.NotChooseYet;
+                this.DicAnswerResultlist[Direction.Left][i] = AnswerResult.NotChooseYet;
+                this.DicAnswerResultlist[Direction.Bottom][i] = AnswerResult.NotChooseYet;
+                this.DicAnswerResultlist[Direction.Right ][i] = AnswerResult.NotChooseYet;
+
+
+            }
+            for (i = 0; i < this.RowSize; i++)
+            {
+                HashSet<int> hshUniqueInRow = new HashSet<int>();
+                HashSet<int> hshUniqueInColumn = new HashSet<int>();
+                for (j = 0; j < this.RowSize; j++)
+                {
+                    if (this[i, j] > 0)
+                    {
+                        if (hshUniqueInRow.Contains(this[i, j]))
+                        {
+                            IsThisboardSolved = false;
+                            this.DicAnswerResultlist[Direction.Left][i] = AnswerResult.UniqueIncorrect;
+                            this.DicAnswerResultlist[Direction.Right][i] = AnswerResult.UniqueIncorrect;
+
+                        }
+                        else
+                        {
+                            hshUniqueInRow.Add(this[i, j]);
+                        }
+                    }
+
+                    if (this[j, i] > 0)
+                    {
+                        if (hshUniqueInColumn.Contains(this[j, i]))
+                        {
+                            IsThisboardSolved = false;
+                            this.DicAnswerResultlist[Direction.Top][i] = AnswerResult.UniqueIncorrect;
+                            this.DicAnswerResultlist[Direction.Bottom][i] = AnswerResult.UniqueIncorrect;
+
+                        }
+                        else
+                        {
+                            hshUniqueInColumn.Add(this[j, i]);
+                        }
+                    }
+                }
+            }
+           
+
             foreach (Direction dir in Directions)
             {
                 for (int line = 0; line < this.RowSize; line++)
                 {
+                    if(this.DicAnswerResultlist[dir][line] == AnswerResult.UniqueIncorrect)
+                    {
+                        continue;
+                    }
+
                     if (this.DicUserAnswerlist[dir][line] == 0)
                     {
                         this.DicAnswerResultlist[dir][line] = AnswerResult.NotChooseYet;
@@ -232,7 +287,7 @@ namespace Skyscraper
                         }
                         else
                         {
-                            this.DicAnswerResultlist[dir][line] = AnswerResult.Incorrect;
+                            this.DicAnswerResultlist[dir][line] = AnswerResult.SumIncorrect;
                             IsThisboardSolved = false;
                         }
                     }
@@ -329,6 +384,10 @@ namespace Skyscraper
         {
 
             //throw new NotImplementedException();
+        }
+        public void EnterCellValue(int Row,int Column,int CellValue)
+        {
+            EnterCellValue(new Position(Row, Column), CellValue);
         }
         public void EnterCellValue(Position position, int CellValue)
         {

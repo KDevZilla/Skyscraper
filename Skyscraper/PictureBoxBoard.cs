@@ -506,7 +506,7 @@ namespace Skyscraper
                         case AnswerResult.Correct:
                             DrawBrush = SumBrushCorrect;
                             break;
-                        case AnswerResult.Incorrect:
+                        case AnswerResult.SumIncorrect:
                             DrawBrush = SumBrushWrong;
                             break;
                             /*

@@ -186,7 +186,7 @@ namespace Skyscraper
                     {1,4,3,2 }
                 };
             Board.IBoardGenerator BoardGen = new Board.BasicGenerator(Utility.PreGenerateDigitsPath);
-            BoardGen = new Board.ManualGenerator(arr2d);
+           // BoardGen = new Board.ManualGenerator(arr2d);
 
             game = new Game(this, BoardSize, BoardSize, BoardGen);
             picboard = new PictureBoxBoard(game.board, false);

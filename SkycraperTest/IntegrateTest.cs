@@ -134,18 +134,26 @@ namespace SkycraperTest
                 Trace.Assert(Utility.IsBoardInputValueTheSame(Board2, boardResult));
             }
             /*
-int[,] arr2d = {
+            Fin
+            int[,] arr2d = {
             {3,2,1,4 },
             {2,3,4,1 },
             {4,1,2,3 },
             {1,4,3,2 }
- */
+             */
             boardResult = Board2.Clone();
             boardResult.EnterCellValue(new Position(0, 0), 3);
             boardResult.EnterCellValue(new Position(1, 0), 2);
             boardResult.EnterCellValue(new Position(2, 0), 4);
             boardResult.EnterCellValue(new Position(3, 0), 1);
 
+            /*
+            int[,] arr2d = {
+            {3, , ,  },
+            {2, , ,  },
+            {4, , ,  },
+            {1, , ,  }
+            */
             Trace.Assert(boardResult[0, 0] == 3);
             Trace.Assert(boardResult[1, 0] == 2);
             Trace.Assert(boardResult[2, 0] == 4);
@@ -158,9 +166,114 @@ int[,] arr2d = {
             Trace.Assert(boardResult.DicUserAnswerlist[Direction.Left][2] == 1);
             Trace.Assert(boardResult.DicUserAnswerlist[Direction.Left][3] == 1);
 
+           
             Trace.Assert(boardResult.DicAnswerResultlist[Direction.Top][0] == AnswerResult.Correct);
             Trace.Assert(boardResult.DicAnswerResultlist[Direction.Bottom][0] == AnswerResult.Correct);
 
+            boardResult.EnterCellValue(new Position(0, 1), 2);
+            boardResult.EnterCellValue(new Position(0, 2), 1);
+            boardResult.EnterCellValue(new Position(0, 3), 4);
+            /*
+            int[,] arr2d = {
+            {3, 2, 1, 4},
+            {2,  ,  ,  },
+            {4,  ,  ,  },
+            {1,  ,  ,  }
+            */
+            Trace.Assert(boardResult.DicAnswerResultlist[Direction.Right][0] == AnswerResult.Correct);
+
+
+            boardResult.EnterCellValue(0, 1, 3);
+            /*
+            int[,] arr2d = {
+            {3, 3, 1, 4},
+            {2,  ,  ,  },
+            {4,  ,  ,  },
+            {1,  ,  ,  }
+            */
+            Trace.Assert(boardResult.DicAnswerResultlist[Direction.Right][0] == AnswerResult.UniqueIncorrect);
+            Trace.Assert(boardResult.DicAnswerResultlist[Direction.Left][0] == AnswerResult.UniqueIncorrect);
+
+            boardResult.EnterCellValue(1, 0, 3);
+            /*
+            int[,] arr2d = {
+            {3, 3, 1, 4},
+            {3,  ,  ,  },
+            {4,  ,  ,  },
+            {1,  ,  ,  }
+            */
+            Trace.Assert(boardResult.DicAnswerResultlist[Direction.Top][0] == AnswerResult.UniqueIncorrect);
+            Trace.Assert(boardResult.DicAnswerResultlist[Direction.Bottom][0] == AnswerResult.UniqueIncorrect);
+
+            boardResult.EnterCellValue(1, 0, 2);
+            Trace.Assert(boardResult.DicAnswerResultlist[Direction.Top][0] == AnswerResult.Correct );
+            Trace.Assert(boardResult.DicAnswerResultlist[Direction.Bottom][0] == AnswerResult.Correct);
+
+            boardResult.EnterCellValue(0, 1, 2);
+            /*
+            int[,] arr2d = {
+            {3, 2, 1, 4},
+            {2,  ,  ,  },
+            {4,  ,  ,  },
+            {1,  ,  ,  }
+            */
+            Trace.Assert(boardResult.DicAnswerResultlist[Direction.Right][0] == AnswerResult.Correct);
+            Trace.Assert(boardResult.DicAnswerResultlist[Direction.Left][0] == AnswerResult.Correct);
+
+            /*
+            int[,] arr2d = {
+            {3, 2, 1, 4},
+            {2,  ,  ,  },
+            {4,  ,  ,  },
+            {1,  ,  ,  }
+            */
+            boardResult.EnterCellValue(1, 1, 1);
+
+
+            /*
+            int[,] arr2d = {
+               (2),(3),(2),(1)
+            (2){3,  2, 1, 4},
+            (3){2,  1 ,  , }(2),
+            (1){4,  ,  ,  },
+            (2){1,  ,  ,  }
+            */
+
+            Trace.Assert(boardResult.DicAnswerResultlist[Direction.Right][1] == AnswerResult.Correct);
+            Trace.Assert(boardResult.DicAnswerResultlist[Direction.Left][1] == AnswerResult.SumIncorrect);
+            Trace.Assert(boardResult.DicAnswerResultlist[Direction.Top][1] == AnswerResult.SumIncorrect);
+            Trace.Assert(boardResult.DicAnswerResultlist[Direction.Bottom][1] == AnswerResult.SumIncorrect);
+
+
+            boardResult.EnterCellValue(1, 1, 3);
+            boardResult.EnterCellValue(1, 2, 4);
+            boardResult.EnterCellValue(1, 3, 1);
+
+            boardResult.EnterCellValue(2, 1, 1);
+            boardResult.EnterCellValue(2, 2, 2);
+            boardResult.EnterCellValue(2, 3, 3);
+
+            boardResult.EnterCellValue(3, 1, 4);
+            boardResult.EnterCellValue(3, 2, 3);
+            boardResult.EnterCellValue(3, 3, 2);
+            /*
+            Fin
+            int[,] arr2d = {
+            {3,2,1,4 },
+            {2,3,4,1 },
+            {4,1,2,3 },
+            {1,4,3,2 }
+            */
+            foreach (Direction dir in Board2.Directions)
+            {
+                for (i = 0; i < 4; i++)
+                {
+                    Trace.Assert(Board2.DicAnswerResultlist[dir][i] == AnswerResult.Correct);
+                }
+            }
+            Trace.Assert(boardResult.IsFinshed);
+
+           
 
         }
 
