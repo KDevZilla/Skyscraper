@@ -37,8 +37,8 @@ For the Red one you can see 1, 2, 3, 4 that why the value in an arrow is 4
 
 # How to setup a project
 1. Just download a project, it is just a small program written in C# Windows Form.
-2. There are 2 projects
-      Skyscraper: This is the main project
+2. There are 2 projects\
+      Skyscraper: This is the main project\
       SkyscraperTest: This it the test project
 3. For testing the project, you can just run The test cases in IntegrateTest.class
 4. This project requires AppInfo folder in same folder of Skyscraper.exe, you no need to do anything
