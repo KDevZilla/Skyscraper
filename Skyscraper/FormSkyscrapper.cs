@@ -317,5 +317,12 @@ namespace Skyscraper
             f.ShowDialog();
 
         }
+
+        private void toolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            FormHowToPlay f = new FormHowToPlay();
+            f.ShowDialog();
+
+        }
     }
 }

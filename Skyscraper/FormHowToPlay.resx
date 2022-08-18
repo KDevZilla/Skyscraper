@@ -117,8 +117,32 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="SkyCraperScreen_HowtoPlay" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\SkyCraperScreen_HowtoPlay.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="label1.Text" xml:space="preserve">
+    <value>1. Every cell must fill with a number. The number represent the heigh 
+of the skycraper. 
+If the board size is 4x4 
+the valid number is 1,2,3,4 (The number from 1 to the size of the board)
+
+2. The number of the cell cannot be duplicate in each row and each column.
+
+3. If you look in the direction of the arrow, 
+the number in the arrow at the side of the board 
+indicates how many skyscrapers you can see.
+
+4. To make the number of skyscrapers you can see 
+match the value in an arrow, you must enter 
+the appropriate number into the column.</value>
+  </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value>
+This image show the correct value of all the cell in the board
+The blue rectangle show that the value in a arrow is 1 because when you 
+look from the arrot position you can only see the 4 story skycraper
+
+The same with the green and the orange one. For the green one you can see
+2 and 4 you so totally you can see 2 skycraper
+
+For the Red one you can see 1, 2, 3, 4 that why the value in an arrow is 4
+</value>
   </data>
 </root>

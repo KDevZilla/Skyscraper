@@ -61,10 +61,10 @@
             this.linkLabelGithub.Location = new System.Drawing.Point(27, 21);
             this.linkLabelGithub.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.linkLabelGithub.Name = "linkLabelGithub";
-            this.linkLabelGithub.Size = new System.Drawing.Size(277, 21);
+            this.linkLabelGithub.Size = new System.Drawing.Size(284, 21);
             this.linkLabelGithub.TabIndex = 3;
             this.linkLabelGithub.TabStop = true;
-            this.linkLabelGithub.Text = "https://github.com/kdevzilla/skycraper";
+            this.linkLabelGithub.Text = "https://github.com/kdevzilla/skyscraper";
             this.linkLabelGithub.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.LinkClicked);
             // 
             // FormAbout
