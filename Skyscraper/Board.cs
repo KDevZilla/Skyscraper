@@ -64,12 +64,22 @@ namespace Skyscraper
         public void MoveCurrentCellToDirection(Direction dir)
         {
             Position NewCellPosition = this.CurrentCell.Add(DeltaMoveCell[dir]);
+            MoveCurrentCellToPosition(NewCellPosition);
+            /*
             if(!IsPostionValid(NewCellPosition))
             {
                 return;
             }
             this.CurrentCell = NewCellPosition;
-            
+            */
+        }
+        public void MoveCurrentCellToPosition(Position position)
+        {
+            if (!IsPostionValid(position))
+            {
+                return;
+            }
+            this.CurrentCell = position;
         }
         private Dictionary<Direction, Position> _DeltaMoveCell = null;
         public Dictionary<Direction, Position> DeltaMoveCell

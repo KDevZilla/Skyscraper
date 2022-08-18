@@ -125,12 +125,9 @@ namespace Skyscraper
                 return;
             }
 
-           // this.board.SwitchValue(position);
-           
-            if (this.board.IsFinshed)
-            {
-                UIBoard.InformUserWon();
-            }
+            // this.board.SwitchValue(position);
+            this.board.MoveCurrentCellToPosition(position);
+            this.UIBoard.RenderBoard();
             //  this.Board.CellvalueMatrix[position.Row, position.Column] = !this.Board.CellvalueMatrix [position ;
             // this.UIBoard.RenderBoard();
         }
